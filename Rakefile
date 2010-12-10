@@ -16,13 +16,20 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/kyow/igo-ruby"
   gem.license = "MIT"
   gem.summary = %Q{Ruby port of Igo Japanese morphological analyzer.}
-  gem.description = %Q{Ruby port of Igo Japanese morphological analyzer.}
+  gem.description = %Q{
+    Ruby port of Igo Japanese morphological analyzer. Igo-ruby needs Igo's binary dictionary files.
+    These files created by Java programs.
+    See: http://igo.sourceforge.jp/
+  }
   gem.email = "24signals@gmail.com"
   gem.authors = ["K.Nishi"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
   #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  
+  gem.files = Rake::FileList.new('lib/**/*.rb', '[A-Z]*')
+  gem.required_rubygems_version = ">1.3.6"
 end
 Jeweler::RubygemsDotOrgTasks.new
 
