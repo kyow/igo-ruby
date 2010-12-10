@@ -5,7 +5,6 @@ class FileMappedInputStream
     @path = path
     @cur = 0
     @file = open(path, "r+b")
-#   @file.binmode
   end
   
   def get_int()
@@ -13,7 +12,6 @@ class FileMappedInputStream
   end
   
   def get_int_array(count)
-#   return map(count * 4).unpack("i*")
     return @file.read(count * 4).unpack("i*")
   end
   
@@ -25,18 +23,14 @@ class FileMappedInputStream
   end
   
   def get_short_array(count)
-#   return map(count * 2).unpack("s*")
     return @file.read(count * 2).unpack("s*")
   end
   
   def get_char_array(count)
-#   return map(count * 2).unpack("S!*")
     return @file.read(count * 2).unpack("S!*")
   end
   
   def get_string(count)
-#   return map(count * 2)
-#   puts "read count = #{count}"
     return @file.read(count * 2)
   end
   
@@ -71,4 +65,3 @@ class FileMappedInputStream
     return @file.read(size)
   end
 end
-

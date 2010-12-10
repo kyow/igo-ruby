@@ -15,7 +15,6 @@ class ViterbiNode
     @left_id = left_id
     @right_id = right_id
     @is_space = is_space
-#   puts "==viterbinode #{word_id} #{start} #{length} #{left_id} #{right_id} #{is_space}"
   end
   
   def self.make_BOSEOS
@@ -37,7 +36,6 @@ class CharCategory
   end
   
   def compatible?(code1, code2)
-#   puts @eql_masks[code1] & @eql_masks[code2]
     return (@eql_masks[code1] & @eql_masks[code2]) != 0
   end
   
@@ -59,7 +57,6 @@ class Category
     @length = l
     @invoke = iv
     @group = g
-#   puts "==category #{i} #{l} #{iv} #{g}"
   end
 end
 
@@ -89,23 +86,14 @@ class Unknown
     ch = txt[start]
     ct = @category.category(ch)
     
-#   puts "Unknown.search ch=#{ch} length=#{length} start=#{start}"
-#   p ct
-#   p result
-#   p ct.invoke
     if !result.empty? and !ct.invoke
-#     puts "result return"
       return
     end
-#   puts "---i"
     
     is_space = (ct.id == @space_id)
     limit = [length, ct.length + start].min
     
-#   puts "limit = #{limit} #{length} #{ct.length}"
-    
     for i in start..(limit - 1)
-#     puts "[a]"
       wdic.search_from_trie_id(ct.id, start, (i - start) + 1, is_space, result)
       
       if((i + 1) != limit and !(@category.compatible?(ch, text[i + 1])))
@@ -114,17 +102,12 @@ class Unknown
     end
     
     if ct.group and limit < length
-#     puts "[b]"
       for i in limit..(length - 1)
-#       puts "[c] COMPATIBLE? #{ch} #{txt[i + 1]}"
-        
         if not @category.compatible?(ch, txt[i])
-#         puts "[d] #{i} #{start}"
           wdic.search_from_trie_id(ct.id, start, i - start, is_space, result)
           return
         end
       end
-#     puts "[e] #{length} #{start}"
       wdic.search_from_trie_id(ct.id, start, length - start, is_space, result)
     end
   end
@@ -171,17 +154,7 @@ class WordDic
   end
   
   def word_data(word_id)
-#  s = UTFConverter.utf16to8(@data)
-    
-#   st = format("%x", @data_offsets[word_id] * 2)
-#   ed = format("%x", @data_offsets[word_id + 1] * 2)
-    
-#   puts "WORD DATA: #{word_id} = #{st} : #{ed}"
-#   p   s
-#   puts "nkf= " + NKF.nkf('-W16L0 --utf8', s)
-#   p [s].pack("U*")
     return @data.slice(@data_offsets[word_id]*2..@data_offsets[word_id + 1]*2 - 1)
-#   return NKF.nkf('-W16L0 --utf8', s)
   end
 end
 
