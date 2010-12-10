@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["K.Nishi"]
+  s.authors = ["kyow"]
   s.date = %q{2010-12-10}
-  s.description = %q{Ruby port of Igo Japanese morphological analyzer.}
+  s.description = %q{TODO: longer description of your gem}
   s.email = %q{24signals@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -20,19 +20,34 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "igo-ruby-0.1.0.gem",
+    "igo-ruby.gemspec",
+    "ipadic/char.category",
+    "ipadic/code2category",
+    "ipadic/matrix.bin",
+    "ipadic/word.ary.idx",
+    "ipadic/word.dat",
+    "ipadic/word.inf",
+    "ipadic/word2id",
     "lib/igo-ruby.rb",
+    "lib/igo/dictionary.rb",
+    "lib/igo/tagger.rb",
+    "lib/igo/trie.rb",
+    "lib/igo/util.rb",
     "spec/igo-ruby_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+    "test/test.rb"
   ]
   s.homepage = %q{http://github.com/kyow/igo-ruby}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Ruby port of Igo Japanese morphological analyzer.}
+  s.summary = %q{TODO: one-line summary of your gem}
   s.test_files = [
     "spec/igo-ruby_spec.rb",
     "spec/spec_helper.rb",
