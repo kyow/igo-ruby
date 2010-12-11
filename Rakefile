@@ -30,6 +30,7 @@ Jeweler::Tasks.new do |gem|
   
   gem.files = Rake::FileList.new('lib/**/*.rb', '[A-Z]*')
   gem.required_rubygems_version = ">1.3.6"
+  gem.rdoc_options << '-c UTF-8' << '-S' << '-U'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -54,4 +55,6 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "igo-ruby #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+  
+  rdoc.options << '-c UTF-8' << '-S' << '-U'
 end

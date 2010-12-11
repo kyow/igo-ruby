@@ -7,21 +7,41 @@ class String
   end
 end
 
+#
+#DoubleArrayのノード用の定数などが定義されているクラス
+#
 class Node
+  #
+  #BASEノード用のメソッドが定義されているクラス
+  #
   class Base
+    #BASEノードに格納するID値をエンコードする
     def self.ids(nid)
       return (-1 * nid) - 1
     end
   end
   
+  #
+  #CHECKノード用の定数が定義されているクラス
+  #
   class Chck
+    #文字列の終端文字コード
+    #この文字はシステムにより予約されており、辞書内の形態素の表層形および解析対象テキストに含まれていた場合の動作は未定義
     TERMINATE_CODE = 0
+    #文字列の終端を表す文字定数
     TERMINATE_CHAR = TERMINATE_CODE.chr
+    #CHECKノードが未使用であることを示す文字コード
+    #この文字はシステムにより予約されており、辞書内の形態素の表層形および解析対象テキストに含まれていた場合の動作は未定義
     VACANT_CODE = 1
+    #使用可能な文字の最大値
     CODE_LIMIT = 0xffff
   end
 end
 
+#
+#文字列を文字のストリームとして扱うためのクラス
+#* readメソッドで個々の文字を順に読み込み、文字列の終端に達した場合にはNode::Chck::TERMINATE_CODEが返される。
+#
 class KeyStream
   
   def initialize(key, start = 0)
@@ -34,6 +54,9 @@ class KeyStream
     return rest.compare_to(ks.rest)
   end
   
+  #このメソッドは動作的には、rest().starts_with?(prefix.substring(beg, len))と等価。
+  #ほんの若干だが、パフォーマンスを改善するために導入。
+  #簡潔性のためになくしても良いかもしれない。
   def start_with(prefix, beg, len)
     s = @s
     c = @cur
@@ -69,8 +92,12 @@ class KeyStream
   end
 end
 
+#
 # DoubleArray検索用のクラス
+#
 class Searcher
+  #保存されているDoubleArrayを読み込んで、このクラスのインスタンスを作成する
+  #path:: DoubleArrayが保存されているファイルのパス
   def initialize(path)
     fmis = FileMappedInputStream.new(path)
     node_size = fmis.get_int()
@@ -85,10 +112,15 @@ class Searcher
     fmis.close
   end
   
+  #DoubleArrayに格納されているキーの数を返却
+  #return:: DoubleArrayに格納されているキーの数
   def size
     return @key_set_size
   end
   
+  #キーを検索する
+  #key:: 検索対象のキー文字列
+  #return:: キーが見つかった場合はそのIDを、見つからなかった場合は-1を返す
   def search(key)
     base = @base
     chck = @chck
@@ -111,6 +143,11 @@ class Searcher
     end
   end
   
+  #common-prefix検索を行う
+  #* 条件に一致するキーが見つかる度に、callback.callメソッドが呼び出される
+  #key:: 検索対象のキー文字列
+  #start:: 検索対象となるキー文字列の最初の添字
+  #callback:: 一致を検出した場合に呼び出されるコールバックメソッド
   def each_common_prefix(key, start, callback)
     base = @base
     chck = @chck

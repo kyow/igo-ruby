@@ -1,20 +1,19 @@
-#require 'trie'
-#require 'util'
-#require 'nkf'
+#辞書クラス群
 
-# 辞書
-
+#
+# Viterbiアルゴリズムで使用されるノードクラス
+#
 class ViterbiNode
   attr_accessor :cost, :prev, :word_id, :start, :length, :left_id, :right_id, :is_space
   def initialize(word_id, start, length, left_id, right_id, is_space)
-    @cost = 0
-    @prev = nil
-    @word_id = word_id
-    @start = start
-    @length = length
-    @left_id = left_id
-    @right_id = right_id
-    @is_space = is_space
+    @cost = 0            # 始点からノードまでの総コスト
+    @prev = nil          # コスト最小の前方のノードへのリンク
+    @word_id = word_id   # 単語ID
+    @start = start       # 入力テキスト内での形態素の開始位置
+    @length = length     # 形態素の表層形の長さ(文字数)
+    @left_id = left_id   # 左文脈ID
+    @right_id = right_id # 右文脈ID
+    @is_space = is_space # 形態素の文字種(文字カテゴリ)が空白かどうか
   end
   
   def self.make_BOSEOS
@@ -60,7 +59,12 @@ class Category
   end
 end
 
+#
+# 形態素の連接コスト表クラス
+#
 class Matrix
+  # コンストラクタ
+  # data_dir:: 辞書ファイルのディレクトリパス
   def initialize(data_dir)
     fmis = FileMappedInputStream.new(data_dir + "/matrix.bin")
     @left_size = fmis.get_int
@@ -69,17 +73,30 @@ class Matrix
     fmis.close
   end
   
+  # 形態素同士の連接コストを求める
+  # left_id:: 左文脈ID
+  # right_id:: 右文脈ID
   def link_cost(left_id, right_id)
     return @matrix[right_id * @right_size + left_id]
   end
 end
 
+#
+# 未知語の検索を行うクラス
+#
 class Unknown
+  
+  # コンストラクタ
+  #data_dir:: 辞書ファイルのディレクトリパス
   def initialize(data_dir)
+    # 文字カテゴリ管理クラス
     @category = CharCategory.new(data_dir)
+    
+    # 文字カテゴリが空白の文字のID
     @space_id = @category.category(' '.unpack("U*")[0]).id
   end
   
+  # 検索
   def search(text, start, wdic, result)
     txt = text.unpack("U*")
     length = txt.size
@@ -114,6 +131,8 @@ class Unknown
 end
 
 class WordDic
+  # コンストラクタ
+  #data_dir:: 辞書ファイルのディレクトリパス
   def initialize(data_dir)
     @trie = Searcher.new(data_dir + "/word2id")
     @data = FileMappedInputStream.get_string(data_dir + "/word.dat")
@@ -121,10 +140,10 @@ class WordDic
     
     fmis = FileMappedInputStream.new(data_dir + "/word.inf")
     word_count = fmis.size / (4 + 2 + 2 + 2)
-    @data_offsets = fmis.get_int_array(word_count)
-    @left_ids     = fmis.get_short_array(word_count)
-    @right_ids    = fmis.get_short_array(word_count)
-    @costs        = fmis.get_short_array(word_count)
+    @data_offsets = fmis.get_int_array(word_count)   # 単語の素性データの開始位置
+    @left_ids     = fmis.get_short_array(word_count) # 単語の左文脈ID
+    @right_ids    = fmis.get_short_array(word_count) # 単語の右文脈ID
+    @costs        = fmis.get_short_array(word_count) # 単語のコスト
     fmis.close
   end
   

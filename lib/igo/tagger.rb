@@ -1,10 +1,18 @@
+#形態素解析と分かち書きを行う機能の実装
+
 require 'igo/dictionary'
 require 'igo/trie'
 
 module Igo
-
+  #
+  #形態素クラス
+  #
   class Morpheme
     attr_accessor :surface, :feature, :start
+    
+    #surface:: 形態素の表層形
+    #feature:: 形態素の素性
+    #start:: テキスト内でも形態素の出現開始位置
     def initialize(surface, feature, start)
       @surface = surface
       @feature = feature
@@ -12,18 +20,25 @@ module Igo
     end
 end
 
-  # 形態素解析を行う
+  #
+  #形態素解析を行うクラス
+  #
   class Tagger
     def self.__BOS_NODES
       return [ViterbiNode.make_BOSEOS]
     end
-  
+    
+    #dir:: 辞書ファイルのディレクトリパス
     def initialize(dir)
       @wdc = WordDic.new(dir)
       @unk = Unknown.new(dir)
       @mtx = Matrix.new(dir)
     end
-  
+    
+    #形態素解析を行う
+    #text:: 解析対象テキスト
+    #result:: 解析結果の形態素が追加される配列
+    #return:: 解析結果の形態素配列
     def parse(text, result=[])
       vn = impl(text, result)
       txt = text.unpack("U*")
@@ -39,7 +54,10 @@ end
       return result
     end
   
-  # 分かち書きを行う
+    #分かち書きを行う
+    #text:: 分かち書きされるテキスト
+    #result:: 分かち書き結果の文字列が追加される配列
+    #return:: 分かち書き結果の文字列の配列
     def wakati(text, result=[])
       vn = impl(text, result)
       txt = text.unpack("U*")
