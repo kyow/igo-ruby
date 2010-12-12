@@ -10,7 +10,7 @@ class FileMappedInputStream
   def initialize(path)
     @path = path
     @cur = 0
-    @file = open(path, "r+b")
+    @file = open(path, "rb")
   end
   
   # int値で読み取り
