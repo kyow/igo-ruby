@@ -36,4 +36,5 @@ require 'kconv'
 #
 module Igo
   autoload :Tagger, 'igo/tagger'
+  autoload :Version, 'igo/version'
 end
