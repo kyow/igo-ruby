@@ -1,19 +1,68 @@
 = igo-ruby
+igo-rubyはJavaおよびCommon Lispで実装された形態素解析器 Igo[http://igo.sourceforge.jp] のRuby実装です。
 
-Description goes here.
+igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書ファイルを使用します。
+従って Igo[http://igo.sourceforge.jp] の機能を使用して解析用辞書ファイルを生成する必要があります。
 
-== Contributing to igo-ruby
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+== インストール方法
+コマンドプロンプトより以下を実行してください。
+  $ gem install igo-ruby
+
+== 解析用辞書ファイルの生成
+{Igoのインストール/使い方}[http://igo.sourceforge.jp/index.html#usage]を参照してください。
+
+== サンプル
+=== 形態素解析
+  require 'rubygems'
+  require 'igo-ruby'
+  tagger = Igo::Tagger.new('../../ipadic')  # 解析用辞書のディレクトリを指定
+  
+  t = tagger.parse('吾輩は猫である。名前はまだ無い。')
+  t.each{|m|
+    puts "#{m.surface} #{m.feature} #{m.start}"
+  }
+  
+  # 実行結果
+  吾輩 名詞,代名詞,一般,*,*,*,吾輩,ワガハイ,ワガハイ 0
+  は 助詞,係助詞,*,*,*,*,は,ハ,ワ 2
+  猫 名詞,一般,*,*,*,*,猫,ネコ,ネコ 3
+  で 助動詞,*,*,*,特殊・ダ,連用形,だ,デ,デ 4
+  ある 助動詞,*,*,*,五段・ラ行アル,基本形,ある,アル,アル 5
+  。 記号,句点,*,*,*,*,。,。,。 7
+  名前 名詞,一般,*,*,*,*,名前,ナマエ,ナマエ 8
+  は 助詞,係助詞,*,*,*,*,は,ハ,ワ 10
+  まだ 副詞,助詞類接続,*,*,*,*,まだ,マダ,マダ 11
+  無い 形容詞,自立,*,*,形容詞・アウオ段,基本形,無い,ナイ,ナイ 13
+  。 記号,句点,*,*,*,*,。,。,。 15
+
+=== 分かち書き
+  require 'rubygems'
+  require 'igo-ruby'
+  
+  tagger = Igo::Tagger.new('../../ipadic')  # 解析用辞書のディレクトリを指定
+  t = tagger.wakati('どこで生れたかとんと見当がつかぬ。')
+  puts t.join(' ')
+  
+  # 実行結果
+  どこ で 生れ た か とんと 見当 が つか ぬ 。
+
+=== ウェブアプリ例
+{igo-ruby}[http://igo-ruby.heroku.com/]
+
+== 付録
+=== 公開場所
+* RubyGems
+  * igo-ruby[https://rubygems.org/gems/igo-ruby]
+* ソース(github)
+  * {kyow/igo-ruby}[https://github.com/kyow/igo-ruby]
+
+=== 参照
+* Igo
+  1. {Igo - Java形態素解析器}[http://igo.sourceforge.jp/index.html]
+  2. {Igo}[http://sourceforge.jp/projects/igo/releases/]
+* Igo-python
+  1. {igo-python 0.3a}[http://pypi.python.org/pypi/igo-python/0.3a]
+  2. {Igo Japanease morphological analyzer for python}[https://launchpad.net/igo-python/]
 
 == Copyright
-
-Copyright (c) 2010 kyow. See LICENSE.txt for
-further details.
-
+Copyright (c) kyow, 2010. See LICENSE.txt for further details.
