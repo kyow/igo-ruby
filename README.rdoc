@@ -9,7 +9,7 @@ igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書フ�
   $ gem install igo-ruby
 
 == 解析用辞書ファイルの生成
-{Igoのインストール/使い方}[http://igo.sourceforge.jp/index.html#usage]を参照してください。
+{Igoのインストール/使い方}[http://igo.sourceforge.jp/index.html#usage] を参照してください。
 
 == サンプル
 === 形態素解析
@@ -47,7 +47,7 @@ igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書フ�
   どこ で 生れ た か とんと 見当 が つか ぬ 。
 
 === ウェブアプリ例
-{igo-ruby}[http://igo-ruby.heroku.com/]
+* {igo-ruby.heroku.com}[http://igo-ruby.heroku.com/]
 
 == 付録
 === 公開場所
