@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding=" UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Igo</title>
+  <meta http-equiv="Content-Type" content="text/html; charset= UTF-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Igo</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/igo/dictionary_rb.html">
+                lib/igo/dictionary.rb
+                </a>
+        <br />
+                <a href="../files/lib/igo/tagger_rb.html">
+                lib/igo/tagger.rb
+                </a>
+        <br />
+                <a href="../files/lib/igo/trie_rb.html">
+                lib/igo/trie.rb
+                </a>
+        <br />
+                <a href="../files/lib/igo/util_rb.html">
+                lib/igo/util.rb
+                </a>
+        <br />
+                <a href="../files/lib/igo/version_rb.html">
+                lib/igo/version.rb
+                </a>
+        <br />
+                <a href="../files/lib/igo-ruby_rb.html">
+                lib/igo-ruby.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="Igo.html">Igo</a>モジュール</h2>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Igo/Category.html" class="link">Igo::Category</a><br />
+Class <a href="Igo/CharCategory.html" class="link">Igo::CharCategory</a><br />
+Class <a href="Igo/FileMappedInputStream.html" class="link">Igo::FileMappedInputStream</a><br />
+Class <a href="Igo/KeyStream.html" class="link">Igo::KeyStream</a><br />
+Class <a href="Igo/Matrix.html" class="link">Igo::Matrix</a><br />
+Class <a href="Igo/Morpheme.html" class="link">Igo::Morpheme</a><br />
+Class <a href="Igo/Node.html" class="link">Igo::Node</a><br />
+Class <a href="Igo/Searcher.html" class="link">Igo::Searcher</a><br />
+Class <a href="Igo/Tagger.html" class="link">Igo::Tagger</a><br />
+Class <a href="Igo/Unknown.html" class="link">Igo::Unknown</a><br />
+Class <a href="Igo/Version.html" class="link">Igo::Version</a><br />
+Class <a href="Igo/ViterbiNode.html" class="link">Igo::ViterbiNode</a><br />
+Class <a href="Igo/WordDic.html" class="link">Igo::WordDic</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
