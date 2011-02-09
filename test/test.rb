@@ -1,6 +1,9 @@
 # coding: utf-8
 require 'rubygems'
-require File.dirname(__FILE__) + '/../lib/igo-ruby'
+require 'igo-ruby'
+#require File.dirname(__FILE__) + '/../lib/igo-ruby'
+
+puts "version -> #{Igo::Version.igo_ruby}"
 
 tagger = Igo::Tagger.new(File.dirname(__FILE__) + '/../../ipadic')
 t = tagger.parse('吾輩は猫である。名前はまだ無い。')
