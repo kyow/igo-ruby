@@ -1,3 +1,4 @@
+# coding: utf-8
 #
 #= 形態素解析エンジンIgoのRuby実装
 #解析結果がほぼMeCab互換の形態素解析エンジン"Igo"のRuby実装

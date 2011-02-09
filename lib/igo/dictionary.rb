@@ -1,3 +1,4 @@
+# coding: utf-8
 #= 辞書クラス群
 
 module Igo
