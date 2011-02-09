@@ -29,7 +29,6 @@
 $:.unshift(File.dirname(__FILE__))
 
 require 'nkf'
-require 'jcode'
 require 'kconv'
 
 #
