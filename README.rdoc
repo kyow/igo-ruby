@@ -1,18 +1,22 @@
 = igo-ruby
+
 igo-rubyはJavaおよびCommon Lispで実装された形態素解析器 Igo[http://igo.sourceforge.jp] のRuby実装です。
 
 igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書ファイルを使用します。
 従って Igo[http://igo.sourceforge.jp] の機能を使用して解析用辞書ファイルを生成する必要があります。
 
 == インストール方法
+
 コマンドプロンプトより以下を実行してください。
   $ gem install igo-ruby
 
 == 解析用辞書ファイルの生成
+
 {Igoのインストール/使い方}[http://igo.sourceforge.jp/index.html#usage] を参照してください。
 
 == サンプル
 === 形態素解析
+
   require 'rubygems'
   require 'igo-ruby'
   tagger = Igo::Tagger.new('../../ipadic')  # 解析用辞書のディレクトリを指定
@@ -36,6 +40,7 @@ igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書フ�
   。 記号,句点,*,*,*,*,。,。,。 15
 
 === 分かち書き
+
   require 'rubygems'
   require 'igo-ruby'
   
@@ -47,16 +52,19 @@ igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書フ�
   どこ で 生れ た か とんと 見当 が つか ぬ 。
 
 === ウェブアプリ例
+
 * {igo-ruby.heroku.com}[http://igo-ruby.heroku.com/]
 
 == 付録
 === 公開場所
+
 * RubyGems
   * igo-ruby[https://rubygems.org/gems/igo-ruby]
 * ソース(github)
   * {kyow/igo-ruby}[https://github.com/kyow/igo-ruby]
 
 === 参照
+
 * Igo
   1. {Igo - Java形態素解析器}[http://igo.sourceforge.jp/index.html]
   2. {Igo}[http://sourceforge.jp/projects/igo/releases/]
@@ -65,4 +73,5 @@ igo-rubyでは、 Igo[http://igo.sourceforge.jp] と同一の解析用辞書フ�
   2. {Igo Japanease morphological analyzer for python}[https://launchpad.net/igo-python/]
 
 == Copyright
-Copyright (c) kyow, 2010. See LICENSE.txt for further details.
+
+Copyright (c) kyow, 2010, 2011. See LICENSE.txt for further details.
