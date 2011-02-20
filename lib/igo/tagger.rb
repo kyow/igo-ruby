@@ -3,6 +3,7 @@
 
 require 'igo/dictionary'
 require 'igo/trie'
+require 'igo/preprocess'
 
 module Igo
   #
@@ -34,6 +35,11 @@ end
       @wdc = WordDic.new(dir)
       @unk = Unknown.new(dir)
       @mtx = Matrix.new(dir)
+      @preprocess = nil
+    end
+    
+    def config(preprocess)
+      @preprocess = preprocess
     end
     
     #形態素解析を行う
@@ -41,7 +47,7 @@ end
     #result:: 解析結果の形態素が追加される配列
     #return:: 解析結果の形態素配列
     def parse(text, result=[])
-      vn = impl(text, result)
+      vn = impl(text)
       txt = text.unpack("U*")
       while vn
         surface = txt.slice(vn.start, vn.length).pack("U*")
@@ -60,7 +66,7 @@ end
     #result:: 分かち書き結果の文字列が追加される配列
     #return:: 分かち書き結果の文字列の配列
     def wakati(text, result=[])
-      vn = impl(text, result)
+      vn = impl(text)
       txt = text.unpack("U*")
     
       while vn
@@ -73,7 +79,7 @@ end
   
     private
   
-    def impl(text, result=[])
+    def impl(text)
       txs = text.unpack("U*")
       len = txs.size
     
