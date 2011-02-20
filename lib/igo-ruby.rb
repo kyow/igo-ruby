@@ -3,7 +3,7 @@
 #= 形態素解析エンジンIgoのRuby実装
 #解析結果がほぼMeCab互換の形態素解析エンジン"Igo"のRuby実装
 #
-#Copyright:: Copyright (c) kyow, 2010
+#Copyright:: Copyright (c) kyow, 2010, 2011
 #Authors:: K.Nishi
 #License:: MIT License ただし、使用する辞書のライセンスに関しては、辞書配布元のそれに準ずる
 #
