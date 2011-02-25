@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- encoding: utf-8 -*-
 #形態素解析と分かち書きを行う機能の実装
 
 require 'igo/dictionary'
