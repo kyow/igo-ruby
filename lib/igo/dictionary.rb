@@ -104,6 +104,7 @@ module Igo
     #wdic::
     #result::
     def search(text, start, wdic, result)
+      text = text.force_encoding('binary') if text.respond_to?(:force_encoding)
       txt = text.unpack("U*")
       length = txt.size
       ch = txt[start]
@@ -118,8 +119,9 @@ module Igo
     
       for i in start..(limit - 1)
         wdic.search_from_trie_id(ct.id, start, (i - start) + 1, is_space, result)
-      
-        if((i + 1) != limit and !(@category.compatible?(ch, text[i + 1])))
+        
+        ch2 = text[i + 1].is_a?(String) ? text[i + 1].ord : text[i + 1]
+        if((i + 1) != limit and !(@category.compatible?(ch, ch2)))
           return
         end
       end
