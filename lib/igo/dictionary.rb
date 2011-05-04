@@ -108,6 +108,12 @@ module Igo
       length = txt.size
       ch = txt[start]
       ct = @category.category(ch)
+
+      if RUBY_VERSION >= '1.9.0'
+        txt2 = text.bytes.to_a
+      else
+        txt2 = text.unpack('C*')
+      end
     
       if !result.empty? and !ct.invoke
         return
@@ -118,8 +124,8 @@ module Igo
     
       for i in start..(limit - 1)
         wdic.search_from_trie_id(ct.id, start, (i - start) + 1, is_space, result)
-      
-        if((i + 1) != limit and !(@category.compatible?(ch, text[i + 1])))
+        
+        if((i + 1) != limit and !(@category.compatible?(ch, txt2[i + 1])))
           return
         end
       end
