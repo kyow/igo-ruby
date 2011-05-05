@@ -14,3 +14,9 @@ t.each{|m|
 puts "wakati ->"
 t = tagger.wakati('どこで生れたかとんと見当がつかぬ。')
 puts t.join(' ')
+
+t = tagger.parse('取り敢えずビール')
+puts "1.9 character code bug fix ->"
+t.each{|m|
+  puts "#{m.surface} #{m.feature} #{m.start}"
+}
