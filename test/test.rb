@@ -27,3 +27,8 @@ puts "wakati 2nd. ->"
 t = tagger.wakati('二回目の解析', t)
 puts t.join(' ')
 
+puts "1.9 character code bug fix ->"
+t = tagger.parse('取り敢えずビール')
+t.each{|m|
+  puts "#{m.surface} #{m.feature} #{m.start}"
+}
