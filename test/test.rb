@@ -20,3 +20,9 @@ puts "1.9 character code bug fix ->"
 t.each{|m|
   puts "#{m.surface} #{m.feature} #{m.start}"
 }
+
+t = tagger.parse('Let’s Dance')
+puts "Fix error raised when fullwidth symbol mixed ->"
+t.each{|m|
+  puts "#{m.surface} #{m.feature} #{m.start}"
+}
