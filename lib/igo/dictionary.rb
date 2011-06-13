@@ -109,9 +109,9 @@ module Igo
       else
         txt = text.unpack('C*')
       end
-      
-      length = txt.size
-      ch = txt[start]
+      txtu = text.unpack("U*")
+      length = txtu.size
+      ch = txtu[start]
       ct = @category.category(ch)
     
       if !result.empty? and !ct.invoke
@@ -131,7 +131,7 @@ module Igo
     
       if ct.group and limit < length
         for i in limit..(length - 1)
-          if not @category.compatible?(ch, txt[i])
+          if not @category.compatible?(ch, txtu[i])
             wdic.search_from_trie_id(ct.id, start, i - start, is_space, result)
             return
           end
